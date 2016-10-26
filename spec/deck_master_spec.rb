@@ -1,6 +1,6 @@
-require 'deck_creator'
+require 'deck_master'
 
-describe Deck_Creator do
+describe Deck_Master do
   it 'holds cards in deck_hash' do
     expect(subject).to respond_to(:deck_hash)
   end

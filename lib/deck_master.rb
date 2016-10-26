@@ -1,6 +1,6 @@
 require 'card'
 
-class Deck_Creator
+class Deck_Master
   attr_accessor :deck_hash
 
   def initialize
@@ -59,4 +59,6 @@ class Deck_Creator
       '14 of Spades' => Card.new(:spades, 14),
     }
   end
+
+
 end
