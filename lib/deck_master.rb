@@ -60,5 +60,9 @@ class Deck_Master
     ]
   end
 
+  def give_card_to(player)
+
+  end
+
 
 end
