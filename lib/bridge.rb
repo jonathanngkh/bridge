@@ -1,7 +1,10 @@
+require 'deck_master'
+
 class Bridge
-  attr_accessor :cards
+  attr_accessor :cards, :players
 
   def initialize
-    @cards = []
+    @cards = Deck_Master.new.deck_deck
+    @players = []
   end
 end

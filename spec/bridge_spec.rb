@@ -8,5 +8,11 @@ describe Bridge do
     end
   end
 
+  describe 'players' do
+    it 'has 4 players' do
+      expect(subject).to respond_to(:players)
+    end
+  end
+
 
 end

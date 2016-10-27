@@ -1,7 +1,7 @@
 require 'deck_master'
 
 describe Deck_Master do
-  it 'holds cards in deck_hash' do
+  it 'holds cards in deck_deck' do
     expect(subject).to respond_to(:deck_deck)
   end
 
@@ -9,14 +9,13 @@ describe Deck_Master do
     expect(subject.deck_deck.count).to eq 52
   end
 
-  it 's #give_card_to(player) can give away a card to a target player' do
-    player = double :player, :cards => []
-    expect{ subject.give_card_to(player) }.to change{ subject.deck_deck.count }.from(52).to(51)
+  it 's cards are randomized as in not in increasing order' do
+    first_four_cards_plus_minus_plus_minus = subject.deck_deck[0].value - subject.deck_deck[1].value + subject.deck_deck[2].value - subject.deck_deck[3].value
+    expect(first_four_cards_plus_minus_plus_minus).not_to eq 0
   end
 
-  it 'can shuffle the deck' do
-    unshuffled_deck = subject.deck_deck
-    subject.shuffle_deck_deck
-    expect(subject.deck_deck==unshuffled_deck).to be false
+  it 's #give_card_to(player) can give away a card to a target player' do
+    player = double :player, :hand => []
+    expect{ subject.give_card_to(player) }.to change{ subject.deck_deck.count }.from(52).to(51)
   end
 end

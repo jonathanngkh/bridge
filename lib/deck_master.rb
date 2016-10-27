@@ -57,16 +57,10 @@ class Deck_Master
       Card.new(:diamonds, 14),
       Card.new(:hearts, 14),
       Card.new(:clubs, 14)
-    ]
+    ].shuffle
   end
 
   def give_card_to(player)
-    player.cards << self.deck_deck.pop
+    player.hand << self.deck_deck.pop
   end
-
-  def shuffle_deck_deck
-    self.deck_deck = self.deck_deck.shuffle
-  end
-
-
 end
