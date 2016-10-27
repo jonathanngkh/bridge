@@ -15,4 +15,8 @@ class Bridge
       end
     end
   end
+
+  def wash?
+    false
+  end
 end
