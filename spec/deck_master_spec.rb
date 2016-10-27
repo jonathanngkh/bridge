@@ -11,8 +11,12 @@ describe Deck_Master do
 
   it 's #give_card_to(player) can give away a card to a target player' do
     player = double :player, :cards => []
-    # subject.give_card_to(player)
-    expect{ subject.give_card_to(player) }.to change { subject.deck_deck.count }.from(52).to(51)
-    # expect(subject.deck_hash.count).to eq 51
+    expect{ subject.give_card_to(player) }.to change{ subject.deck_deck.count }.from(52).to(51)
+  end
+
+  it 'can shuffle the deck' do
+    unshuffled_deck = subject.deck_deck
+    subject.shuffle_deck_deck
+    expect(subject.deck_deck==unshuffled_deck).to be false
   end
 end

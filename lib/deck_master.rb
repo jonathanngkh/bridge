@@ -61,7 +61,11 @@ class Deck_Master
   end
 
   def give_card_to(player)
+    player.cards << self.deck_deck.pop
+  end
 
+  def shuffle_deck_deck
+    self.deck_deck = self.deck_deck.shuffle
   end
 
 
