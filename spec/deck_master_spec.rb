@@ -10,8 +10,8 @@ describe Deck_Master do
   end
 
   it 's cards are randomized as in not in increasing order' do
-    first_four_cards_plus_minus_plus_minus = subject.deck_deck[0].value - subject.deck_deck[1].value + subject.deck_deck[2].value - subject.deck_deck[3].value
-    expect(first_four_cards_plus_minus_plus_minus).not_to eq 0
+     ordered_values_array = [subject.deck_deck[0].value, subject.deck_deck[1].value, subject.deck_deck[2].value, subject.deck_deck[3].value, subject.deck_deck[4].value, subject.deck_deck[5].value, subject.deck_deck[6].value, subject.deck_deck[7].value, subject.deck_deck[8].value, subject.deck_deck[9].value, subject.deck_deck[10].value]
+    expect(ordered_values_array).not_to eq [2,2,2,2,3,3,3,3,4,4,4]
   end
 
   it 's #give_card_to(player) can give away a card to a target player' do

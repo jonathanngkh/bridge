@@ -91,6 +91,12 @@ describe Player do
     end
   end
 
+  describe 'wash logic' do
+    it 'has wash_points' do
+      expect(subject).to respond_to(:wash_points)
+    end
+  end
+
   it 'notifies itself of the number of sets that need to be won upon bidding' do
     expect(subject.bid_for(1, :spades)).to eq "You will need to win 7 sets while the opponent will need 7."
   end

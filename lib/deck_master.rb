@@ -1,4 +1,5 @@
 require 'card'
+require 'player'
 
 class Deck_Master
   attr_accessor :deck_deck

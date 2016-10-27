@@ -1,5 +1,5 @@
 class Player
-  attr_accessor :hand, :bid, :playing_card, :sets_won, :sets_to_win, :sets_to_lose
+  attr_accessor :hand, :bid, :playing_card, :sets_won, :sets_to_win, :sets_to_lose, :wash_points
 
   def initialize
     @hand = []
@@ -8,6 +8,7 @@ class Player
     @sets_won = []
     @sets_to_win = []
     @sets_to_lose = []
+    @wash_points = 0
   end
 
   def bid_for(level, suit)
