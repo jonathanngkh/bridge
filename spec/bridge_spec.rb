@@ -8,6 +8,24 @@ describe Bridge do
     end
   end
 
+  describe 'gameplay' do
+    context 'bidding' do
+
+    end
+
+    context 'set resolution' do
+
+    end
+
+    context 'team resolution' do
+
+    end
+
+    context 'win loss' do
+
+    end
+  end
+
   describe 'players' do
     it 'has players' do
       expect(subject).to respond_to(:players)

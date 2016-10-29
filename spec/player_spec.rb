@@ -21,6 +21,10 @@ describe Player do
     expect{ subject.bid_for(1, :spades) }.to change { subject.bid }.from([]).to([1, :spades])
   end
 
+  it 'can choose a partner card' do
+    expect { subject.choose_partner(:value, :suit) }.to change { subject.partner_card }.from([]).to('value, :suit')
+  end
+
   describe 'bid logic' do
     before do
       subject.bid_for(level, :spades)
