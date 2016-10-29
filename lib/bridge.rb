@@ -10,13 +10,32 @@ class Bridge
 
   def deal
     13.times do
-      self.players.each do |player|
-        self.cards.give_card_to(player)
+      players.each do |player|
+        cards.give_card_to(player)
       end
     end
   end
 
   def wash?
-    false
+    players.each do |player|
+      player.hand.each do |card|
+        case card.value
+        when 14
+          player.wash_points += 4
+        when 13
+          player.wash_points += 3
+        when 12
+          player.wash_points += 2
+        when 11
+          player.wash_points += 1
+        end
+      end
+
+      if player.wash_points >= 4
+        return false
+      else
+        return true
+      end
+    end
   end
 end
