@@ -95,6 +95,14 @@ describe Player do
     it 'has wash_points' do
       expect(subject).to respond_to(:wash_points)
     end
+
+    it 'has a suit counter' do
+      expect(subject).to respond_to(:suit_counter)
+    end
+
+    it 'for every suit' do
+      expect(subject.suit_counter.count).to eq 4
+    end
   end
 
   it 'notifies itself of the number of sets that need to be won upon bidding' do
@@ -103,5 +111,10 @@ describe Player do
 
   it 'can choose a card to play' do
     expect{ subject.play(subject.hand[0]) }.to change { subject.playing_card }.from([]).to(subject.hand[0])
+  end
+
+  it 'can reset' do
+    subject.hand = [:card1, :card2]
+    expect{ subject.reset }.to change { subject.hand }.from([:card1, :card2]).to([])
   end
 end
