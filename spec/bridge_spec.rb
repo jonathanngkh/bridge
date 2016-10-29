@@ -14,11 +14,33 @@ describe Bridge do
     end
 
     context 'set resolution' do
+      it 'has a set holder' do
 
+      end
+
+      it 'gives the set to the owner of the highest card' do
+
+      end
+
+      describe 'determining set winner' do
+        context 'same suit' do
+
+        end
+
+        context 'different suits, no trump setting' do
+
+        end
+
+        context 'different suits, trump setting' do
+
+        end
+      end
     end
 
     context 'team resolution' do
+      it 'places winner of bid and holder of partner card on same team' do
 
+      end
     end
 
     context 'win loss' do
