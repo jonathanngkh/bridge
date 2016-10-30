@@ -9,8 +9,29 @@ describe Bridge do
   end
 
   describe 'gameplay' do
+    it 'knows the rank order' do
+      expect(subject.rank).to eq({:clubs=>1, :diamonds=>2, :hearts=>3, :spades=>4})
+    end
     context 'bidding' do
+      it 'has a current bid' do
+        expect(subject).to respond_to(:current_bid)
+      end
 
+      describe '#bid' do
+        it 'changes current_bid to player\'s bid' do
+          subject.players[0].bid = [1, :spades]
+          expect{ subject.bid(subject.players[0].bid) }.to change { subject.current_bid }.from([0, :clubs]).to([1, :spades])
+        end
+
+        context 'within the same level' do
+          it 'resolves winning bid by suit' do
+            subject.current_bid = [1, :diamonds]
+            expect{ subject.bid([1, :clubs]) }.not_to change{ subject.current_bid }
+
+          end
+        end
+
+      end
     end
 
     context 'set resolution' do

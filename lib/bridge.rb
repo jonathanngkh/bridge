@@ -1,11 +1,18 @@
 require 'deck_master'
 
 class Bridge
-  attr_accessor :cards, :players
+  attr_accessor :cards, :players, :current_bid, :rank
 
   def initialize
     @cards = Deck_Master.new
     @players = [Player.new, Player.new, Player.new, Player.new]
+    @current_bid = [0, :clubs]
+    @rank = {
+      :clubs=>1,
+      :diamonds=>2,
+      :hearts=>3,
+      :spades=>4
+    }
   end
 
   def deal
@@ -51,6 +58,12 @@ class Bridge
       else
         return true
       end
+    end
+  end
+
+  def bid(players_bid)
+    if players_bid[0] >= self.current_bid[0] && self.rank[players_bid[1]] >= rank[self.current_bid[1]]
+      self.current_bid = players_bid
     end
   end
 end
