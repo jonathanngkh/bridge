@@ -10,7 +10,7 @@ describe Bridge do
 
   describe 'gameplay' do
     it 'knows the rank order' do
-      expect(subject.rank).to eq({:clubs=>1, :diamonds=>2, :hearts=>3, :spades=>4})
+      expect(subject.rank).to eq({:clubs=>1, :diamonds=>2, :hearts=>3, :spades=>4, :notrump => 5})
     end
     context 'bidding' do
       it 'has a current bid' do
@@ -20,14 +20,39 @@ describe Bridge do
       describe '#bid' do
         it 'changes current_bid to player\'s bid' do
           subject.players[0].bid = [1, :spades]
-          expect{ subject.bid(subject.players[0].bid) }.to change { subject.current_bid }.from([0, :clubs]).to([1, :spades])
+          expect{ subject.bid(subject.players[0].bid) }.to change{ subject.current_bid }.from([0, :clubs]).to([1, :spades])
         end
 
         context 'within the same level' do
-          it 'resolves winning bid by suit' do
+          before do
             subject.current_bid = [1, :diamonds]
-            expect{ subject.bid([1, :clubs]) }.not_to change{ subject.current_bid }
+          end
 
+          it 'doesnt allow smaller bids by suit' do
+            expect{ subject.bid([1, :clubs]) }.not_to change{ subject.current_bid }
+          end
+
+          it 'allows bigger bids by suit' do
+            expect{ subject.bid([1, :hearts]) }.to change{ subject.current_bid }.from([1, :diamonds]).to([1, :hearts])
+          end
+
+          it 'doesnt allow the same bid' do
+            expect{ subject.bid([1, :diamonds]) }.not_to change{ subject.current_bid }
+            expect(subject.bid([1, :diamonds])).to eq "You can only make a higher bid"
+          end
+        end
+
+        context 'between different levels' do
+          before do
+            subject.current_bid = [2, :spades]
+          end
+          it 'resolves with higher level, regardless of suit' do
+            expect{ subject.bid([3, :clubs]) }.to change { subject.current_bid }.from([2, :spades]).to([3, :clubs])
+          end
+
+          it 'doesnt allow lower level to win bid' do
+            expect{ subject.bid([1, :spades]) }.not_to change{ subject.current_bid }
+            expect(subject.bid([1, :spades])).to eq "You can only make a higher bid"
           end
         end
 

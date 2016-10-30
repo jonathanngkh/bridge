@@ -8,10 +8,11 @@ class Bridge
     @players = [Player.new, Player.new, Player.new, Player.new]
     @current_bid = [0, :clubs]
     @rank = {
-      :clubs=>1,
-      :diamonds=>2,
-      :hearts=>3,
-      :spades=>4
+      :clubs =>    1,
+      :diamonds => 2,
+      :hearts =>   3,
+      :spades =>   4,
+      :notrump =>  5
     }
   end
 
@@ -62,8 +63,12 @@ class Bridge
   end
 
   def bid(players_bid)
-    if players_bid[0] >= self.current_bid[0] && self.rank[players_bid[1]] >= rank[self.current_bid[1]]
+    if players_bid[0] == self.current_bid[0] && self.rank[players_bid[1]] > rank[self.current_bid[1]]
       self.current_bid = players_bid
+    elsif players_bid[0] > self.current_bid[0]
+      self.current_bid = players_bid
+    else
+      "You can only make a higher bid"
     end
   end
 end
