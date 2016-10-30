@@ -8,6 +8,7 @@ class Bridge
     @players = [Player.new, Player.new, Player.new, Player.new]
     @current_bid = [0, :clubs]
     @rank = {
+      :pass =>     0,
       :clubs =>    1,
       :diamonds => 2,
       :hearts =>   3,
@@ -71,6 +72,8 @@ class Bridge
       self.current_bid = players_bid
     elsif players_level_is_higher
       self.current_bid = players_bid
+    elsif players_bid == [0, :pass]
+      :pass
     else
       "You can only make a higher bid"
     end

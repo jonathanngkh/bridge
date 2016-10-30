@@ -10,7 +10,7 @@ describe Bridge do
 
   describe 'gameplay' do
     it 'knows the rank order' do
-      expect(subject.rank).to eq({:clubs=>1, :diamonds=>2, :hearts=>3, :spades=>4, :notrump => 5})
+      expect(subject.rank).to eq({:pass=> 0, :clubs=>1, :diamonds=>2, :hearts=>3, :spades=>4, :notrump => 5})
     end
     context 'bidding' do
       it 'has a current bid' do
@@ -56,6 +56,17 @@ describe Bridge do
           end
         end
 
+        context 'bidding resolution' do
+          it 'allows the players to pass on bidding' do
+            expect(subject.change_current_bid_to([0, :pass])).to eq :pass
+          end
+        end
+      end
+    end
+
+    context 'team resolution' do
+      it 'places winner of bid and holder of partner card on same team' do
+
       end
     end
 
@@ -83,11 +94,6 @@ describe Bridge do
       end
     end
 
-    context 'team resolution' do
-      it 'places winner of bid and holder of partner card on same team' do
-
-      end
-    end
 
     context 'win loss' do
 
