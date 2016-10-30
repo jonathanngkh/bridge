@@ -50,9 +50,9 @@ class Bridge
         end
       end
 
-    player.suit_counter.each do |suit, counter|
-      player.wash_points += counter - 4 if counter > 4
-    end
+      player.suit_counter.each do |suit, counter|
+        player.wash_points += counter - 4 if counter > 4
+      end
 
       if player.wash_points >= 4
         return false
@@ -63,9 +63,13 @@ class Bridge
   end
 
   def change_current_bid_to players_bid
-    if players_bid[0] == self.current_bid[0] && self.rank[players_bid[1]] > rank[self.current_bid[1]]
+    same_level = players_bid[0] == self.current_bid[0]
+    players_suit_is_higher = self.rank[players_bid[1]] > rank[self.current_bid[1]]
+    players_level_is_higher = players_bid[0] > self.current_bid[0]
+
+    if same_level && players_suit_is_higher
       self.current_bid = players_bid
-    elsif players_bid[0] > self.current_bid[0]
+    elsif players_level_is_higher
       self.current_bid = players_bid
     else
       "You can only make a higher bid"
