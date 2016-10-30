@@ -62,7 +62,7 @@ class Bridge
     end
   end
 
-  def bid(players_bid)
+  def change_current_bid_to players_bid
     if players_bid[0] == self.current_bid[0] && self.rank[players_bid[1]] > rank[self.current_bid[1]]
       self.current_bid = players_bid
     elsif players_bid[0] > self.current_bid[0]

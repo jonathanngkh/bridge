@@ -9,7 +9,7 @@ class Player
     setup
   end
 
-  def bid_for(level, suit)
+  def bid_for level, suit
     self.bid << level
     self.bid << suit
     self.sets_to_win = 7 + level - 1
@@ -17,11 +17,11 @@ class Player
     "You will need to win #{self.sets_to_win} sets while the opponent will need #{self.sets_to_lose}."
   end
 
-  def choose_partner(value_number, suit_name)
+  def choose_partner value_number, suit_name
     self.partner_card = value_number.to_s + ', :' + "#{suit_name}"
   end
 
-  def play(card)
+  def play card
     self.playing_card = card
   end
 

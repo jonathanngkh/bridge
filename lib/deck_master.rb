@@ -61,7 +61,7 @@ class Deck_Master
     ].shuffle
   end
 
-  def give_card_to(player)
+  def give_card_to player
     player.hand << self.deck_deck.pop
   end
 end
