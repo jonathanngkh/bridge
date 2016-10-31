@@ -73,9 +73,14 @@ class Bridge
     elsif players_level_is_higher
       self.current_bid = players_bid
     elsif players_bid == [0, :pass]
-      :pass
+      self.rank[:pass] += 1
+      return :pass
     else
       "You can only make a higher bid"
     end
+  end
+
+  def start_game?
+    self.rank[:pass] > 2
   end
 end

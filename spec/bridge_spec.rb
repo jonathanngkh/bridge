@@ -60,6 +60,24 @@ describe Bridge do
           it 'allows the players to pass on bidding' do
             expect(subject.change_current_bid_to([0, :pass])).to eq :pass
           end
+
+          it 'after 3 passes after a successful bid, winner of bid is decided and the game can start' do
+            player1sbid= [1, :spades]
+            player2sbid= [0, :pass]
+            player3sbid= [0, :pass]
+            player4sbid= [0, :pass]
+            subject.change_current_bid_to(player1sbid)
+            subject.change_current_bid_to(player2sbid)
+            subject.change_current_bid_to(player3sbid)
+            subject.change_current_bid_to(player4sbid)
+            expect(subject.start_game?).to eq true
+          end
+
+          it 'doesnt start the game until 3 passes' do
+            player1sbid= [1, :spades]
+            subject.change_current_bid_to(player1sbid)
+            expect(subject.start_game?).to eq false
+          end
         end
       end
     end
