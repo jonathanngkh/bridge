@@ -70,8 +70,10 @@ class Bridge
 
     if same_level && players_suit_is_higher
       self.current_bid = players_bid
+      self.rank[:pass] = 0
     elsif players_level_is_higher
       self.current_bid = players_bid
+      self.rank[:pass] = 0
     elsif players_bid == [0, :pass]
       self.rank[:pass] += 1
       return :pass
